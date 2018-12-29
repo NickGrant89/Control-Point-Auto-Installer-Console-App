@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
 
-namespace ConsoleMonitor
+namespace ConsoleMonitorV2
 {
     class ClientEndpoint
     {

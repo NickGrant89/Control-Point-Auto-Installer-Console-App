@@ -18,7 +18,7 @@ using System.Xml;
 using System.Xml.Linq;
 
 
-namespace ConsoleMonitor
+namespace ConsoleMonitorV2
 {
     class DarkTools
     {

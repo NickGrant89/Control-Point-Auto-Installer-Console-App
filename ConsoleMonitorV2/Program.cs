@@ -7,7 +7,7 @@ using System.Xml.Linq;
 using System.Configuration;
 using System.IO;
 
-namespace ConsoleMonitor
+namespace ConsoleMonitorV2
 {
     class Program
     {

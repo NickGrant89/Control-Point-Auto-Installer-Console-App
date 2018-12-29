@@ -7,7 +7,7 @@ using System.IO;
 using RestSharp;
 using RestSharp.Authenticators;
 
-namespace ConsoleMonitor
+namespace ConsoleMonitorV2
 {
     class LogFile
     {

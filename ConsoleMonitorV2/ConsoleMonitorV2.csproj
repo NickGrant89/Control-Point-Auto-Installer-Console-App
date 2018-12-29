@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{616FB8B9-F81A-47EC-AB17-318FFA812CBA}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>ConsoleMonitor</RootNamespace>
-    <AssemblyName>ConsoleMonitor</AssemblyName>
+    <RootNamespace>ConsoleMonitorV2</RootNamespace>
+    <AssemblyName>ConsoleMonitorV2</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

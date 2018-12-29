@@ -7,7 +7,7 @@ using System.Linq;
 using Microsoft.VisualBasic.Devices;
 
 
-namespace ConsoleMonitor
+namespace ConsoleMonitorV2
 {
     class MyDevice
     {

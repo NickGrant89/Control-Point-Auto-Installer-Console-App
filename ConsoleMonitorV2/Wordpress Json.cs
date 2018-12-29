@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleMonitor
+namespace ConsoleMonitorV2
 {
 
     public class Rootobject

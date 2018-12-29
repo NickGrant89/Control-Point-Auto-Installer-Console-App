@@ -6,7 +6,7 @@ using System;
 using System.IO;
 using System.Net.Mail;
 
-namespace ConsoleMonitor
+namespace ConsoleMonitorV2
 {
 
     class MonitorV1
