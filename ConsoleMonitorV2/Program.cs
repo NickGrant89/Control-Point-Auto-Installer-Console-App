@@ -15,21 +15,22 @@ namespace ConsoleMonitorV2
         static void Main(string[] args)
         {
 
-            if (!File.Exists(DarkTools.OCCXMLPostID))
+            if (!File.Exists(@"C:\ProgramData\Onec\Config\id.txt"))
             {
                 //Create Folder stucture, Config file and post info.
-                DarkTools.createLogFolder();
-                DarkTools.CreateFolderXMLConfig();
-                DarkTools.CreateXMLPostID();
-                DarkTools.PostInfo();
+
+                FunctionsV2.createFolder(@"C:\ProgramData\Onec\Logs");
+                FunctionsV2.createFolder(@"C:\ProgramData\Onec\Config");
+                FunctionsV2.createTxtFile(@"C:\ProgramData\Onec\Config\id.txt");
+                FunctionsV2.deviceCheckIn();
+    
 
 
             }
             if (!File.Exists(DarkTools.OCCXMLConfig))
             {
 
-                //Creates GetConfig File.
-                DarkTools.GetConfig();
+               
 
 
             }

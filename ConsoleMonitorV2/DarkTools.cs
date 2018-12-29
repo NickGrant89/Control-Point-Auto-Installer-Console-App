@@ -134,9 +134,8 @@ namespace ConsoleMonitorV2
                 //Response to Var 
                 var postid = response2.Content.ToString();
                 //Deserialize to object
-                Rootobject post = JsonConvert.DeserializeObject<Rootobject>(postid);
-                //Get postId Varable
-                DarkTools.PostId = post.id.ToString();
+                
+         
                 //Writes postid to XML
                 WritePostIDToXml();
 
@@ -234,20 +233,9 @@ namespace ConsoleMonitorV2
 
                     try
                     {
-                        //Deserializing Using LINQ Example
-                        Monitor_Configuration a = new Monitor_Configuration
-
-                        {
-                            
-                    
-                            site_endpoint = (string)rss["acf"]["monitor_configuration"][0]["site_endpoint"],
-                            activate_monitor = (string)rss["acf"]["monitor_configuration"][0]["activate_monitor"],
-
-
-                        };
+                       
                       
-                        DarkTools.PostEndPointC = a.site_endpoint;
-                        DarkTools.ActivateMonitor = a.activate_monitor;
+                
 
                         if (DarkTools.PostEndPointC != "")
                         {
@@ -295,19 +283,9 @@ namespace ConsoleMonitorV2
 
 
 
-                //Deserializing Using LINQ Example
-                Monitor_Configuration a = new Monitor_Configuration
-
-                {
-                    
-                    site_endpoint = (string)rss["acf"]["monitor_configuration"][0]["site_endpoint"],
-                    activate_monitor = (string)rss["acf"]["monitor_configuration"][0]["activate_monitor"],
-
-
-                };
                
-                DarkTools.PostEndPointC = a.site_endpoint;
-                DarkTools.ActivateMonitor = a.activate_monitor;
+               
+  
 
 
             }
@@ -316,42 +294,12 @@ namespace ConsoleMonitorV2
 
             }
         }
-        //Create folder stucture for config
-        public static void CreateFolderXMLConfig()
-        {
-            string path = @"C:\ProgramData\Onec\Config";
 
-            if (Directory.Exists(path))
-            {
-
-            }
-
-            // Try to create the directory.
-            DirectoryInfo di = Directory.CreateDirectory(path);
-            Directory.GetCreationTime(path);
-            LogFile.LogMessageToFile("Folders Created");
-        }
-
-        //Create Log Folder
-        public static void createLogFolder()
-        {
-            string path = @"C:\ProgramData\Onec\Logs";
-
-            if (Directory.Exists(path))
-            {
-
-            }
-
-            // Try to create the directory.
-            DirectoryInfo di = Directory.CreateDirectory(path);
-            Directory.GetCreationTime(path);
-            LogFile.LogMessageToFile("Log Folders Created");
-        }
 
         //Creates post config / ID
         public static void CreateXMLPostID()
         {
-            string path = @"C:\ProgramData\Onec\Config\OCCID.xml";
+            string path = @"C:\ProgramData\Onec\Config\id.txt";
             if (!File.Exists(path))
             {
                 // Create a file to write to.

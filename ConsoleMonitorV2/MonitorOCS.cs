@@ -29,11 +29,8 @@ namespace ConsoleMonitorV2
 
             var GetConfig = response2.Content.ToString();
 
-            Acf post = JsonConvert.DeserializeObject<Acf>(GetConfig);
 
-            string PostID = post.monitor_post_id_qsr;
-
-            return PostID;
+            return "";
 
         }
 
@@ -197,11 +194,8 @@ namespace ConsoleMonitorV2
 
                 //Response to Var 
                 var postid = response2.Content.ToString();
-                //Deserialize to object
-                Rootobject post = JsonConvert.DeserializeObject<Rootobject>(postid);
-                //Get postId Varable
-                MonitorQSR.MonPostID = post.id.ToString();
-                //Writes postid to XML
+     
+         
 
                 MonitorV1.regClientV1();
                 MyDevice.MyDevicePostInfo();

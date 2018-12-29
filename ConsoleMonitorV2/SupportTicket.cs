@@ -50,13 +50,13 @@ namespace ConsoleMonitorV2
 
             var GetConfig = API.Get(d, MonitorV1.getPostIDV1(), API.userName(), API.passWord(), "posts", "log_t");
 
-            Acf id = JsonConvert.DeserializeObject<Acf>(GetConfig);
 
-            string PostID = id.log_t;
+
+
 
             LogFile.LogMessageToFile("Ticket Ref, Received");
 
-            return PostID;
+            return "";
 
             
         }

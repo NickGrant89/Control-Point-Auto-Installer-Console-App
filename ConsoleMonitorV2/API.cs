@@ -13,7 +13,7 @@ namespace ConsoleMonitorV2
 
         public static string domainName()
         {
-            return "https://register.onec.systems";
+            return "https://portal.onec.systems";
         }
 
         public static string userName()
