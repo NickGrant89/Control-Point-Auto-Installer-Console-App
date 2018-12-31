@@ -22,30 +22,14 @@ namespace ConsoleMonitorV2
                 FunctionsV2.createFolder(@"C:\ProgramData\Onec\Logs");
                 FunctionsV2.createFolder(@"C:\ProgramData\Onec\Config");
                 FunctionsV2.createTxtFile(@"C:\ProgramData\Onec\Config\id.txt");
-                FunctionsV2.deviceCheckIn();
+                API.findID();
     
 
 
             }
-            if (!File.Exists(DarkTools.OCCXMLConfig))
-            {
-
-               
-
-
-            }
-            if (File.Exists(DarkTools.OCCXMLConfig) && File.Exists(DarkTools.OCCXMLPostID))
-            {
-
-                MonitorQSR.RunMonitorQSR();
-              
-                
-            }
-            DarkTools.ReadPostIDXml();
-            LogFile.postRequest("register.onec.systems", DarkTools.ReadXMLID);
-            DarkTools.ReadConfigToXml();
-            LogFile.postRequest(DarkTools.ReadSiteEndpoint, MonitorV1.getPostIDV1());
-
+           
+                MonitorFunctionsV2.runMonitor();
+                MonitorFunctionsV2.checkIfActive();
 
 
         }

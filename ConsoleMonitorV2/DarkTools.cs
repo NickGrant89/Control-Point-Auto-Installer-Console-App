@@ -194,7 +194,7 @@ namespace ConsoleMonitorV2
                 request2.AddJsonBody(content1); //<-- this will serialize and add the model as a JSON body.
                 IRestResponse response2 = client.Execute(request2);
 
-                MyDevice.MyDevicePostInfo();
+             
 
 
             }

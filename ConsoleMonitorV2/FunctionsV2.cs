@@ -53,7 +53,7 @@ namespace ConsoleMonitorV2
 
         }
         //Reads Post ID
-        public static void readTxtFile(string filePath)
+        public static string readTxtFile(string filePath)
         {
             //@"C:\ProgramData\Onec\Config\id.txt
 
@@ -63,6 +63,7 @@ namespace ConsoleMonitorV2
             // Display the file contents to the console. Variable text is a string.
             System.Console.WriteLine("Contents of WriteText.txt = {0}", text);
 
+            return text;
 
         }
         //Creates Device
@@ -82,15 +83,18 @@ namespace ConsoleMonitorV2
                 var client = new RestClient(API.domainName() +"/api/v1/devices/checkin");
                 var request2 = new RestRequest(Method.POST);
                 request2.AddHeader("content-type", "application/json");
-                request2.AddHeader("Authorization", "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5pY2tncmFudDE5ODlAbGl2ZS5jby51ayIsInVzZXJJZCI6IjViY2U0Y2EwODRiOWUyNWU5MDkzMmQ2ZCIsImlhdCI6MTU0NjA5NTkxMywiZXhwIjoxNTQ2MDk5NTEzfQ.j8zD0eTxVkg3sW2Z4F83quR65bCPnfL1y1K1oA4DyQE");
+                request2.AddHeader("Authorization", "bearer " + API.getAuth());
                 request2.AddJsonBody(device); //<-- this will serialize and add the model as a JSON body.
                 IRestResponse response2 = client.Execute(request2);
 
                 //Response to Var 
                 Console.WriteLine(response2.Content.ToString());
                 //Deserialize to object
-         
-                
+                DeviceModel.RootObject account = JsonConvert.DeserializeObject<DeviceModel.RootObject>(response2.Content);
+
+                writeTxtFile(@"C:\ProgramData\Onec\Config\id.txt", account._id);
+
+
                 LogFile.LogMessageToFile("Device registered add endpoint");
 
 
