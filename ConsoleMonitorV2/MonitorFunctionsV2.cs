@@ -11,7 +11,7 @@ namespace ConsoleMonitorV2
     class MonitorFunctionsV2
     {
 
-        public static void checkIfActive()
+        public static string getDeviceStatus()
         {
             var client = new RestClient(API.domainName() + "/api/v1/devices/" + FunctionsV2.readTxtFile(@"C:\ProgramData\Onec\Config\id.txt"));
             var request2 = new RestRequest(Method.GET);
@@ -19,8 +19,18 @@ namespace ConsoleMonitorV2
             request2.AddHeader("Authorization", "bearer " + API.getAuth());
             IRestResponse response2 = client.Execute(request2);
 
+            return response2.Content;
+        }
+
+        public static void checkIfActive()
+        {
+            
+            if(getDeviceStatus() == "The device with the given ID cannot be found!")
+            {
+                FunctionsV2.deviceCheckIn();
+            }
             //Deserialize to object
-            DeviceModel.RootObject device = JsonConvert.DeserializeObject<DeviceModel.RootObject>(response2.Content);
+            DeviceModel.RootObject device = JsonConvert.DeserializeObject<DeviceModel.RootObject>(getDeviceStatus());
 
             if (device.status != "Active")
             {
@@ -41,40 +51,40 @@ namespace ConsoleMonitorV2
                 var device = new
                 {
 
-                    pcname = DarkTools.pcNameV1(),
-                    ipaddress = DarkTools.GetLocalIPAddress(),
-                    macaddress = DarkTools.GetMACAddress(),
+                    pcname = MyDevice.getPcName(),
+                    ipaddress = MyDevice.getLocalIPAddress(),
+                    macaddress = MyDevice.getMACAddress(),
                     status = "Active",
                     timestamp = DateTime.Now.ToString(),
 
                     deviceinfo = new
                     {
                         windowsversion = MyDevice.WindowsVer(),
-                        cpu ="too",
+                        cpu = MyDevice.getProcessor(),
                         availablememory = MyDevice.PhysicalMemory(),
-                        exipaddress = DarkTools.getExternalIp(),
+                        exipaddress = MyDevice.getExternalIp(),
                         antivirus = MyDevice.AntiVirus(),
-                        deviceuptime = "y",
+                        deviceuptime = MyDevice.GetUptime().ToString(),
                         lastupdated = "",
 
                     },
                     devicestatus = new
                     {
-                        cpu = "100",
-                        memory = "67",
-                        network = "48",
+                        cpu = "13",
+                        memory = "47",
+                        network = "5",
                     },
                     harddrivespace = new
                     {
-                        totalspace = "6",
-                        freespace ="10",
-                        usedspace = "490",
+                        totalspace = MyDevice.TotalSpace(),
+                        freespace = MyDevice.freeSpace(),
+                        usedspace = MyDevice.usedSpace(),
                     },
                      
 
-                    ocslogfile = "n",
+                    ocslogfile = FunctionsV2.readTxtFile(@"C:\ProgramData\Onec\Logs\log-" + DateTime.Now.ToString("ddMMyyyy") + ".txt"),
 
-            };
+                };
 
                 var client = new RestClient(API.domainName() + "/api/v1/devices/" + FunctionsV2.readTxtFile(@"C:\ProgramData\Onec\Config\id.txt"));
                 var request2 = new RestRequest(Method.PUT);

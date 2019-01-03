@@ -27,8 +27,6 @@ namespace ConsoleMonitorV2
 
 
             }
-           
-                MonitorFunctionsV2.runMonitor();
                 MonitorFunctionsV2.checkIfActive();
 
 

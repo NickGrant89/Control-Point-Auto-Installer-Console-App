@@ -73,10 +73,10 @@ namespace ConsoleMonitorV2
             {
                 var device = new
                 {
-                    pcname = DarkTools.pcNameV1(),
-                    ipaddress = DarkTools.GetLocalIPAddress(),
-                    macaddress = DarkTools.GetMACAddress(),
-                    status = "Test",
+                    pcname = MyDevice.getPcName(),
+                    ipaddress = MyDevice.getLocalIPAddress(),
+                    macaddress = MyDevice.getMACAddress(),
+                    status = "Disabled",
                     timestamp = DateTime.Now.ToString(),
                 };
 

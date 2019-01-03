@@ -46,13 +46,13 @@ namespace ConsoleMonitorV2
 
         public static void findID()
         {
-            var client = new RestClient(API.domainName() + "/api/v1/devices/" + DarkTools.GetMACAddress());
+            var client = new RestClient(API.domainName() + "/api/v1/devices/find/" + MyDevice.getMACAddress());
             var request2 = new RestRequest(Method.GET);
             request2.AddHeader("content-type", "application/json");
             request2.AddHeader("Authorization", "bearer " + API.getAuth());
             IRestResponse response2 = client.Execute(request2);
 
-            if(response2.Content == "The device with the given ID cannot be found!")
+            if(response2.Content == "Not Found!")
             {
                 FunctionsV2.deviceCheckIn();
                
@@ -62,38 +62,9 @@ namespace ConsoleMonitorV2
                 //Deserialize to object
                 DeviceModel.RootObject device = JsonConvert.DeserializeObject<DeviceModel.RootObject>(response2.Content);
                 FunctionsV2.writeTxtFile(@"C:\ProgramData\Onec\Config\id.txt", device._id);
-
             }
-
-            
         }
 
-        public static string Get(string Domain, string id, string username, string password, string contentType, string extra)
-        {
-            var client = new RestClient(Domain + "/wp-json/acf/v3/" + contentType + "/" + id + "/" + extra);
-            client.Authenticator = new HttpBasicAuthenticator(username, password);
-            var request2 = new RestRequest(Method.GET);
-            request2.AddHeader("content-type", "application/json");
-            IRestResponse response2 = client.Execute(request2);
-
-            return response2.Content.ToString();
-        }
-
-        public static string Post(string id, string username, string password, string contentType, string content, string extra)
-        {
-
-            var content1 = content;
-
-            var client = new RestClient(domainName() + "/wp-json/acf/v3/" + contentType + "/" + id + "/" + extra);
-            client.Authenticator = new HttpBasicAuthenticator(username, password);
-            var request2 = new RestRequest(Method.POST);
-            request2.AddHeader("content-type", "application/json");
-            //request2.AddJsonBody(content1); //<-- this will serialize and add the model as a JSON body.
-            request2.AddParameter("application/json", content1, ParameterType.RequestBody);
-            IRestResponse response2 = client.Execute(request2);
-
-            return null;
-        }
 
 
 

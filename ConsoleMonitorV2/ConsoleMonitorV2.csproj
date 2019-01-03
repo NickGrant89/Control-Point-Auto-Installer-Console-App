@@ -57,7 +57,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="API.cs" />
-    <Compile Include="DarkTools.cs" />
     <Compile Include="DeviceModel.cs" />
     <Compile Include="FunctionsV2.cs" />
     <Compile Include="Library.cs" />
