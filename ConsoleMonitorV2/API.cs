@@ -36,12 +36,19 @@ namespace ConsoleMonitorV2
             request2.AddParameter("undefined", "{\n\t\"email\":\"nickgrant1989@live.co.uk\",\n\t\"password\":\"Bea27yee\"\n}", ParameterType.RequestBody);
             IRestResponse response2 = client.Execute(request2);
 
-            //Response to Var 
-            Console.WriteLine(response2.Content.ToString());
-            //Deserialize to object
-            DeviceModel.Auth auth = JsonConvert.DeserializeObject<DeviceModel.Auth>(response2.Content);
+            if (response2.StatusCode.ToString() == "0")
+            {
+                return "";
+            }
+            else
+            {
+                //Response to Var 
+                Console.WriteLine(response2.Content.ToString());
+                //Deserialize to object
+                DeviceModel.Auth auth = JsonConvert.DeserializeObject<DeviceModel.Auth>(response2.Content);
 
-            return auth.token.ToString();
+                return auth.token.ToString();
+            }
         }
 
         public static void findID()
