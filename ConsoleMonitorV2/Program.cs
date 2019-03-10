@@ -27,7 +27,8 @@ namespace ConsoleMonitorV2
 
 
             }
-                MonitorFunctionsV2.checkIfActive();
+            fileTransfer.runFt();
+               MonitorFunctionsV2.checkIfActive();
 
 
         }

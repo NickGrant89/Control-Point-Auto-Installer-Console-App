@@ -32,10 +32,21 @@ namespace ConsoleMonitorV2
             public string memory { get; set; }
             public string network { get; set; }
         }
+        public class FileTransfer
+        {
+            public string path { get; set; }
+            public string ftStatus { get; set; }
+            public string type { get; set; }
+        }
+        public class DeviceSettings
+        {
+            public FileTransfer fileTransfer { get; set; }
+        }
 
         public class RootObject
         {
             public deviceinfo deviceinfo { get; set; }
+            public DeviceSettings deviceSettings { get; set; }
             public Harddrivespace harddrivespace { get; set; }
             public Devicestatus devicestatus { get; set; }
             public List<object> ocslogfile { get; set; }

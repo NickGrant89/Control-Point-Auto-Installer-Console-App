@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="API.cs" />
     <Compile Include="DeviceModel.cs" />
+    <Compile Include="fileTransfer.cs" />
     <Compile Include="FunctionsV2.cs" />
     <Compile Include="LogFile.cs" />
     <Compile Include="MonitorFunctionsV2.cs" />

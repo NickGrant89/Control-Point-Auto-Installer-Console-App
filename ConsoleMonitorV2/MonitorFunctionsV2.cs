@@ -54,8 +54,6 @@ namespace ConsoleMonitorV2
                     pcname = MyDevice.getPcName(),
                     ipaddress = MyDevice.getLocalIPAddress(),
                     macaddress = MyDevice.getMACAddress(),
-                    status = "Active",
-                    timestamp = DateTime.Now.ToString(),
 
                     deviceinfo = new
                     {
@@ -65,7 +63,7 @@ namespace ConsoleMonitorV2
                         exipaddress = MyDevice.getExternalIp(),
                         antivirus = MyDevice.AntiVirus(),
                         deviceuptime = MyDevice.GetUptime().ToString(),
-                        lastupdated = "",
+                        lastupdated = DateTime.Now.ToString(),
 
                     },
                     devicestatus = new
@@ -81,6 +79,42 @@ namespace ConsoleMonitorV2
                         usedspace = MyDevice.usedSpace(),
                     },
                      
+
+                    ocslogfile = FunctionsV2.readTxtFile(@"C:\ProgramData\Onec\Logs\log-" + DateTime.Now.ToString("ddMMyyyy") + ".txt"),
+
+                };
+
+                var client = new RestClient(API.domainName() + "/api/v1/devices/" + FunctionsV2.readTxtFile(@"C:\ProgramData\Onec\Config\id.txt"));
+                var request2 = new RestRequest(Method.PUT);
+                request2.AddHeader("content-type", "application/json");
+                request2.AddHeader("Authorization", "bearer " + API.getAuth());
+                request2.AddJsonBody(device); //<-- this will serialize and add the model as a JSON body.
+                //request2.AddJsonBody(Devicestatus);
+                IRestResponse response2 = client.Execute(request2);
+
+                LogFile.LogMessageToFile(" ");
+
+
+            }
+            catch
+            {
+
+            }
+        }
+
+        public static void runfileTransfer()
+        {
+            try
+            {
+                var device = new
+                {
+
+                    pcname = MyDevice.getPcName(),
+                    ipaddress = MyDevice.getLocalIPAddress(),
+                    macaddress = MyDevice.getMACAddress(),
+
+                    
+
 
                     ocslogfile = FunctionsV2.readTxtFile(@"C:\ProgramData\Onec\Logs\log-" + DateTime.Now.ToString("ddMMyyyy") + ".txt"),
 

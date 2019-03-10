@@ -14,7 +14,7 @@ namespace ConsoleMonitorV2
 
         public static string domainName()
         {
-            return "https://portal.onec.systems";
+            return "http://192.168.178.23:3000";
         }
 
         public static string userName()
